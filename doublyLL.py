@@ -1,11 +1,11 @@
 
 import sys
 class Node:
-    def __init__(self, next=None, prev=None, data=None):
+    def __init__(self,data):    
         
-        self.prev = prev
+        self.prev =None
         self.data = data
-        self.next = next
+        self.next =None
 
 
 
@@ -20,7 +20,41 @@ class Linkedlist:
         self.headval = new_node
         print('Node Inserted Successfully at the beginning')
 
+    def print_linklist(self):
+        if self.headval:
+            current = self.headval
 
+            while current:
+                print(current.data)
+                current = current.next
+
+    
+    def delete_node(self, node):
+        if self.headval:
+            prev = None
+            current = self.headval
+
+            while current:
+                if current.data == node:
+                    print("Node to be deleted:", current.data)
+                    
+                    if prev:  # If the node to be deleted is not the head node
+                        prev.next = current.next
+                    else:  # If the node to be deleted is the head node
+                        self.headval = current.next
+                        
+                    print("Node deleted:", current.data)
+                    return
+                    
+                prev = current
+                current = current.next
+
+            print("Node not found in the linked list.")
+            
+        else:
+            print('Linked list is empty')
+
+   
 # Now Created Doubly linklist
 
 doubly_linklist =  Linkedlist()
@@ -31,7 +65,6 @@ node2 =  Node(2)
 node3 =  Node(3)
 node4 =  Node(4)
 node5 =  Node(5)
-
 
 node1.next = node2
 node2.prev = node1
@@ -45,5 +78,6 @@ doubly_linklist.headval = node1
 doubly_linklist.push_at_beg(12)
 
 
+doubly_linklist.print_linklist()
 
-# empty node prev in the head node & empty next of the last node 
+print("Below deleted node ")
